@@ -18,8 +18,6 @@ Para ver mi perfil
 		Given Yo estoy en Linkedin
 		#When uso el email "usuario@correcto.cl"
 		#And la contrasena "p4sswordOK"
-		When uso el email "jwcastillo@gmail.com"
-		And la contrasena "Oj5gH7h***"
 		When Yo ingreso en linkedin
 		And veo mi perfil
 #		And voy a mis contactos
