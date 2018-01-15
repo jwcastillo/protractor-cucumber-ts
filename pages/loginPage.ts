@@ -10,10 +10,12 @@ export class LoginPageObject {
 
     constructor() {
         this.emailTextBox = element(by.name('session_key'));
-        this.passwordTextBox = element(by.name('session_password'));
-       // this.loginButton = $("input[value='Inicia sesión']");
-        this.loginButton = element(by.buttonText('Inicia sesión'));
+      
+        this.passwordTextBox = element(by.id('login-password'));
 
+        //this.passwordTextBox = element(by.name('session_password'));
+       // this.loginButton = $("input[value='Inicia sesión']");
+        this.loginButton = element(by.id('login-submit'));
         this.recoveryButton = by.css('link-forgot-password');
     }
 }

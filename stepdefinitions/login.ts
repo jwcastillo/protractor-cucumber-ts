@@ -3,6 +3,7 @@ import { LoginPageObject } from "../pages/loginPage";
 import { FeedPageObject } from "../pages/feedPage";
 import { ContactosPageObject } from "../pages/contactosPage";
 import { OtroPerfilPageObject } from "../pages/otroPerfilPage";
+import { logging } from "protractor/node_modules/@types/selenium-webdriver";
 
 const { Given, When, Then } = require("cucumber");
 
@@ -15,11 +16,17 @@ const contac: ContactosPageObject = new ContactosPageObject();
 const otroPerfil: OtroPerfilPageObject = new OtroPerfilPageObject();
 
     Given('Yo estoy en Linkedin', async () => {
-            await expect(browser.getTitle()).to.eventually.contains("LinkedIn");
-       });
+
+          await browser.get('https://linkedin.com/');
+         
+          await expect(browser.getCurrentUrl()).to.eventually.equal('https://www.linkedin.com/');
+
+ 
+      });
 
     When('uso el email {string}', async (string) => {
            await login.emailTextBox.sendKeys(string);
+
          });
 
     When('la contrasena {string}', async (string) => {
@@ -27,9 +34,12 @@ const otroPerfil: OtroPerfilPageObject = new OtroPerfilPageObject();
          });
 
    When('Yo ingreso en linkedin', async () => {
-         browser.actions().sendKeys(protractor.Key.ENTER).perform();
-         browser.sleep(60 * 1000);
+
+         await  login.loginButton.click()
+         await expect(browser.getCurrentUrl()).to.eventually.equal('https://www.linkedin.com/feed/');
+
          });
+        
 
 
    Then('obtengo el mensaje {string}', async (string) => {
@@ -37,8 +47,13 @@ const otroPerfil: OtroPerfilPageObject = new OtroPerfilPageObject();
          });
 
 
-   When('veo mi perfil', async () => {
-           await expect(feed.profileItem.isPresent());
+When('veo mi perfil', { timeout: 60 * 1000 }, async () => {
+
+         await login.loginButton.click().then(function () {
+               browser.wait(function () {
+                     return feed.profileItem.isPresent();
+               }, 30000);
+            });
 
          });
 
@@ -58,8 +73,7 @@ const otroPerfil: OtroPerfilPageObject = new OtroPerfilPageObject();
 
 
    Then('veo su perfil',  async () => {
-            await expect(otroPerfil.profileItem.isPresent());
-            browser.sleep(60 * 1000);
+         expect(otroPerfil.profileItem.isPresent()).to.eventually.equal(true)
 
 
          });

@@ -6,8 +6,8 @@ export class FeedPageObject {
 
 
     constructor() {
-
-        this.profileItem = element(by.id('profile-nav-item'));
+//*[@id="ember2377"]/img
+        this.profileItem = element(by.id('mynetwork-tab-icon'));
         this.myNetworkButton = element(by.linkText('Mi Red'));
     }
 }

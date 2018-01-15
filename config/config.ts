@@ -12,14 +12,15 @@ export const config: Config = {
     baseUrl: "http://www.linkedin.com",
 
      Capabilities: [
-        //{'browserName': 'firefox'}
-         {'browserName': 'chrome'},
+        {'browserName': 'firefox'}
+        // {'browserName': 'chrome'},
         // {'browserName': 'internet explorer'}
         ],
+        
     framework: "custom",
     frameworkPath: require.resolve("protractor-cucumber-framework"),
-    allScriptsTimeout: 30000,
-
+    allScriptsTimeout: 50000, //This is the overall Timeout
+    getPageTimeout: 50000, //This is the Page timeout
     specs: [
         "../../features/*.feature",
     ],
