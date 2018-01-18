@@ -10,7 +10,7 @@ Para ver mi perfil
 		When uso el email "usuario@incorrecto.cl"
 		And la contrasena "p4sswordNO"
 		When Yo ingreso en linkedin
-		Then obtengo el mensaje "Vaya, no reconocemos esa dirección de correo electrónico. Vuelve a intentarlo."
+		Then obtengo el mensaje Vaya, no reconocemos esa dirección de correo electrónico. Vuelve a intentarlo
 
 
 	@CaminoFeliz @PruebaPositiva
@@ -19,10 +19,11 @@ Para ver mi perfil
 		#When uso el email "usuario@correcto.cl"
 		#And la contrasena "p4sswordOK"
 		When uso el email "jwcastillo@gmail.com"
-		And la contrasena "Oj5gH7h***"
+		And la contrasena "15227124***"
 		When Yo ingreso en linkedin
-		And veo mi perfil
-#		And voy a mis contactos
-#		And Selecciono el contacto nro "1" de la lista
-#		Then veo su perfil
+		And Aparece mi nombre "José Wenceslao A. Castillo Mendoza"
+		And hago click en "Mi Red" de la pagina "feed"
+		And hago click en "ver todo" de la pagina "mi red"
+		And Selecciono el contacto nro "1" de la lista
+		Then veo su perfil
 

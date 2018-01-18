@@ -10,13 +10,15 @@ export const config: Config = {
     SELENIUM_PROMISE_MANAGER: false,
 
     baseUrl: "http://www.linkedin.com",
-
-     Capabilities: [
-        {'browserName': 'firefox'}
-        // {'browserName': 'chrome'},
+    //soportes de multiples navegadores
+    multiCapabilities: [
+        //{'browserName': 'firefox'},
+        {'browserName': 'chrome'},
         // {'browserName': 'internet explorer'}
         ],
-        
+    //comento para que sea en paralelo, si no es de manera serial
+    maxSessions: 1,
+
     framework: "custom",
     frameworkPath: require.resolve("protractor-cucumber-framework"),
     allScriptsTimeout: 50000, //This is the overall Timeout
@@ -37,7 +39,7 @@ export const config: Config = {
         require: ["../../stepdefinitions/*.ts", "../../support/*.ts"],
         strict: true,
         keepAlive: false,
-        tags: "@CaminoFeliz",
+        tags: ["@CaminoFeliz", "@PruebaNegativa"],//uso de etiquetas
     },
 
     onComplete: () => {

@@ -17,7 +17,7 @@ BeforeAll({timeout: 30 * 1000}, async () => {
 
 
 
-
+//tomo la fotos en cualquier estado
 After(async function(scenario) {
         // screenShot is a base-64 encoded PNG
      const screenShot = await browser.takeScreenshot();

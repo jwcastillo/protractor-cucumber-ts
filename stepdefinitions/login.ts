@@ -1,9 +1,12 @@
+import { FeedPageObject } from './../pages/feedPage';
 import { browser, protractor, element, by } from "protractor";
 import { LoginPageObject } from "../pages/loginPage";
-import { FeedPageObject } from "../pages/feedPage";
 import { ContactosPageObject } from "../pages/contactosPage";
 import { OtroPerfilPageObject } from "../pages/otroPerfilPage";
 import { logging } from "protractor/node_modules/@types/selenium-webdriver";
+import { strictEqual } from 'assert';
+ 
+
 
 const { Given, When, Then } = require("cucumber");
 
@@ -14,6 +17,7 @@ const login: LoginPageObject = new LoginPageObject();
 const feed: FeedPageObject = new FeedPageObject();
 const contac: ContactosPageObject = new ContactosPageObject();
 const otroPerfil: OtroPerfilPageObject = new OtroPerfilPageObject();
+//const utils: Utils = new Utils();
 
     Given('Yo estoy en Linkedin', async () => {
 
@@ -33,36 +37,30 @@ const otroPerfil: OtroPerfilPageObject = new OtroPerfilPageObject();
            await login.passwordTextBox.sendKeys(string);
          });
 
-   When('Yo ingreso en linkedin', async () => {
+ 
+        //otra forma de escribir el timeout
+When('Yo ingreso en linkedin', { timeout: 60 * 1000 }, async () => {
+            await login.loginButton.click();      
+      });
 
-         await  login.loginButton.click()
-         await expect(browser.getCurrentUrl()).to.eventually.equal('https://www.linkedin.com/feed/');
+      When('Aparece mi nombre {string}', async (string) => {
+            expect(feed.nameItem.getText()).to.eventually.equal(string);
 
-         });
-        
-
-
-   Then('obtengo el mensaje {string}', async (string) => {
-            await expect(element(by.xpath("//*[text()[normalize-space() = '" + string + "']]")));
-         });
+      });
 
 
-When('veo mi perfil', { timeout: 60 * 1000 }, async () => {
-
-         await login.loginButton.click().then(function () {
-               browser.wait(function () {
-                     return feed.profileItem.isPresent();
-               }, 30000);
-            });
-
-         });
+      Then('obtengo el mensaje Vaya, no reconocemos esa dirección de correo electrónico. Vuelve a intentarlo', async () => {
+                  
+            await expect(login.mensajeErrorLogin.isPresent());
+      });
 
 
-   When('voy a mis contactos',  async () => {
 
-         await browser.get("https://www.linkedin.com/search/results/people/?facetNetwork=%5B%22F%22%5D&origin=MEMBER_PROFILE_CANNED_SEARCH")
+When('hago click en {string} de la pagina {string}', function (string,string2, callback) {
+            // Write code here that turns the phrase above into concrete actions
+            callback(null, 'pending');
+      });
 
-         });
 
 
    When('Selecciono el contacto nro {string} de la lista',  async (string) => {
