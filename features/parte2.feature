@@ -18,11 +18,8 @@ Para ver mi perfil
 		Given Yo estoy en Linkedin
 		#When uso el email "usuario@correcto.cl"
 		#And la contrasena "p4sswordOK"
-<<<<<<< HEAD
 		When uso el email "jwcastillo@gmail.com"
 		And la contrasena "***"
-=======
->>>>>>> a6c74fb36af0ded65812364e07d7617d00e184e9
 		When Yo ingreso en linkedin
 		And Aparece mi nombre "José Wenceslao A. Castillo Mendoza"
 		And hago click en "Mi Red" de la pagina "feed"
