@@ -12,7 +12,7 @@ export const config: Config = {
     baseUrl: "http://www.linkedin.com",
     //soportes de multiples navegadores
     multiCapabilities: [
-        //{'browserName': 'firefox'},
+        {'browserName': 'firefox'},
         {'browserName': 'chrome'},
         // {'browserName': 'internet explorer'}
         ],
